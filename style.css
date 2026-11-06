@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #0d0d11;
+  background-color: #0b0b13;
   color: #f0f0f0;
   padding: 20px;
 }
@@ -37,6 +37,140 @@ body {
 .container {
   max-width: 1100px;
   margin: 0 auto;
+}
+
+/* Classe de ocultação para controle de exibição */
+.boletim-oculto {
+  display: none !important;
+}
+
+/* Área de Login */
+.login-card {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 30px;
+  text-align: left;
+}
+
+.login-card h3 {
+  text-align: center;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+  color: #e50914;
+}
+
+.login-info {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #aaaaaa;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #cccccc;
+}
+
+.form-group input, table input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #333340;
+  background-color: #1a1a24;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.form-group input:focus, table input:focus {
+  border-color: #e50914;
+  outline: none;
+}
+
+table input {
+  padding: 6px 8px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+table input.input-erro {
+  border-color: #e50914;
+  background-color: #331010;
+}
+
+/* Botões */
+.btn-primary, .btn-secondary, .btn-danger {
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  font-size: 0.95rem;
+}
+
+.btn-primary {
+  background-color: #e50914;
+  color: #ffffff;
+  width: 100%;
+}
+
+.btn-primary:hover {
+  background-color: #f6121d;
+}
+
+.painel-acoes {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+}
+
+.painel-acoes .btn-primary {
+  width: auto;
+}
+
+.btn-secondary {
+  background-color: #333344;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #444455;
+}
+
+.btn-danger {
+  background-color: #661111;
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #881111;
+}
+
+/* Status e Mensagens */
+.mensagem-status {
+  font-size: 0.9rem;
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.mensagem-status.erro {
+  color: #ff5555;
+}
+
+.mensagem-status.sucesso {
+  color: #28a745;
+}
+
+.mensagem-status.info {
+  color: #17a2b8;
 }
 
 /* Grade para distribuir os cards de forma flexível */
@@ -159,5 +293,14 @@ tr:hover {
   th, td {
     padding: 8px 10px;
     font-size: 0.85rem;
+  }
+
+  .painel-acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .painel-acoes .btn-primary, .painel-acoes .btn-secondary, .painel-acoes .btn-danger {
+    width: 100%;
   }
 }

@@ -12,56 +12,81 @@
   <!-- Cabeçalho com o título e a série -->
   <header class="header">
     <h1>Boletim Digital</h1>
-    <p class="subtitle">9º Ano | Estudante Exemplo</p>
+    <p class="subtitle">9º Ano | Turma 8B | Nº 17</p>
   </header>
 
   <main class="container">
-    <!-- Área dos Cards de Resumo -->
-    <section class="cards-grid">
-      <div class="card">
-        <h3>Média Geral</h3>
-        <p id="card-media">—</p>
-      </div>
-
-      <div class="card">
-        <h3>Total de Faltas</h3>
-        <p id="card-faltas">—</p>
-      </div>
-
-      <div class="card">
-        <h3>Bom Desempenho</h3>
-        <p id="card-bom-desempenho">—</p>
-      </div>
-
-      <div class="card">
-        <h3>Precisa de Atenção</h3>
-        <p id="card-atencao">—</p>
-      </div>
-
-      <div class="card">
-        <h3>Frequência</h3>
-        <p id="card-frequencia">92%</p>
-        <span class="card-status">Frequência adequada</spboletinha an>
-      </div>
+    <!-- Área de Login por PIN (Visível antes do acesso) -->
+    <section id="login-container" class="card login-card">
+      <h3>Acesso ao Boletim</h3>
+      <p class="login-info">Estudante: <strong>Turma 8B - Nº 17</strong></p>
+      <form id="form-login" onsubmit="return false;">
+        <div class="form-group">
+          <label for="pin-input">PIN de Acesso:</label>
+          <input type="password" id="pin-input" placeholder="Digite seu PIN" required maxlength="20" autocomplete="off">
+        </div>
+        <button type="submit" id="btn-entrar" class="btn-primary">Entrar</button>
+      </form>
+      <div id="login-mensagem" class="mensagem-status"></div>
     </section>
 
-    <!-- Tabela do Boletim -->
-    <section class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>Disciplina</th>
-            <th>1º Tri</th>
-            <th>2º Tri</th>
-            <th>3º Tri</th>
-            <th>Média</th>
-            <th>Faltas</th>
-            <th>Situação</th>
-          </tr>
-        </thead>
-        <!-- As 15 disciplinas serão inseridas aqui automaticamente pelo JavaScript -->
-        <tbody id="tabela-boletim"></tbody>
-      </table>
+    <!-- Área Principal do Boletim (Oculta até o login bem-sucedido) -->
+    <section id="boletim-conteudo" class="boletim-oculto">
+      <!-- Painel de Ações de Edição -->
+      <div class="painel-acoes">
+        <button id="btn-alterar" class="btn-secondary">Alterar dados</button>
+        <button id="btn-salvar" class="btn-primary boletim-oculto">Salvar alterações</button>
+        <button id="btn-cancelar" class="btn-danger boletim-oculto">Cancelar</button>
+        <span id="boletim-mensagem" class="mensagem-status"></span>
+      </div>
+
+      <!-- Área dos Cards de Resumo -->
+      <section class="cards-grid">
+        <div class="card">
+          <h3>Média Geral</h3>
+          <p id="card-media">—</p>
+        </div>
+
+        <div class="card">
+          <h3>Total de Faltas</h3>
+          <p id="card-faltas">—</p>
+        </div>
+
+        <div class="card">
+          <h3>Bom Desempenho</h3>
+          <p id="card-bom-desempenho">—</p>
+        </div>
+
+        <div class="card">
+          <h3>Precisa de Atenção</h3>
+          <p id="card-atencao">—</p>
+        </div>
+
+        <div class="card">
+          <h3>Frequência</h3>
+          <p id="card-frequencia">92%</p>
+          <span class="card-status">Frequência adequada</span>
+        </div>
+      </section>
+
+      <!-- Tabela do Boletim -->
+      <section class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Disciplina</th>
+              <th>1º Tri</th>
+              <th>2º Tri</th>
+              <th>3º Tri</th>
+              <th>Média</th>
+              <th>Faltas</th>
+              <th>Situação</th>
+            </tr>
+          </thead>
+          <!-- As disciplinas serão inseridas aqui via JavaScript -->
+          <tbody id="tabela-boletim"></tbody>
+        </table>
+      </section>
     </section>
   </main>
 
