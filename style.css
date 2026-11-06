@@ -350,52 +350,32 @@ tr:hover {
 .esfera.e6 { transform: rotate(257deg) translate(50px) rotate(-257deg); }
 .esfera.e7 { transform: rotate(308.4deg) translate(50px) rotate(-308.4deg); }
 
-/* Container e Animação do Shenlong Detalhado */
-.shenlong-container {
-  position: relative;
-  width: 220px;
-  height: 160px;
-  margin: -10px auto -15px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Aura de Energia Ki Verde */
-.aura-verde {
+/* Bastão Mágico do Goku Criança */
+.bastao-container {
   position: absolute;
-  width: 140px;
-  height: 140px;
-  background: radial-gradient(circle, rgba(76, 175, 80, 0.45) 0%, rgba(0, 0, 0, 0) 70%);
-  border-radius: 50%;
-  z-index: 0;
-  animation: pulsando-aura 2.5s ease-in-out infinite alternate;
+  top: 15px;
+  right: -20px;
+  width: 170px;
+  height: 25px;
+  transform: rotate(-32deg);
+  z-index: 3;
+  pointer-events: none;
+  filter: drop-shadow(0 0 8px rgba(213, 0, 0, 0.75));
+  animation: flutuar-bastao 3s ease-in-out infinite alternate;
 }
 
-.shenlong-svg {
+.bastao-svg {
   width: 100%;
   height: 100%;
-  z-index: 1;
-  filter: drop-shadow(0 4px 12px rgba(0, 255, 100, 0.35));
-  animation: flutuar-shenlong 3.5s ease-in-out infinite alternate;
 }
 
-.olho-shenlong {
-  animation: brilho-olhos 1.2s infinite alternate;
-}
-
-@keyframes pulsando-aura {
-  0% { transform: scale(0.85); opacity: 0.4; }
-  100% { transform: scale(1.25); opacity: 0.9; }
-}
-
-@keyframes flutuar-shenlong {
-  0% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-7px) rotate(-1deg); }
-  100% { transform: translateY(-12px) rotate(1deg); }
-}
-
-@keyframes brilho-olhos {
-  0% { fill: #d50000; }
-  100% { fill: #ff1744; filter: drop-shadow(0 0 6px #ff1744); }
+@keyframes flutuar-bastao {
+  0% {
+    transform: rotate(-32deg) translateY(0px);
+    filter: drop-shadow(0 0 6px rgba(213, 0, 0, 0.7));
+  }
+  100% {
+    transform: rotate(-32deg) translateY(-6px);
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.9));
+  }
 }
