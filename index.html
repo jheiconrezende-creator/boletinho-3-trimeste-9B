@@ -18,6 +18,90 @@
   <main class="container">
     <!-- Área de Login por PIN (Visível antes do acesso) -->
     <section id="login-container" class="card login-card">
+
+      <!-- Bastão Mágico do Goku Criança (Nyoibo) -->
+      <div class="bastao-container">
+        <svg viewBox="0 0 200 24" class="bastao-svg">
+          <defs>
+            <linearGradient id="corpo-bastao-red" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#ff5252" />
+              <stop offset="40%" stop-color="#d50000" />
+              <stop offset="100%" stop-color="#7a0000" />
+            </linearGradient>
+            <linearGradient id="ouro-pontas" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fff176" />
+              <stop offset="50%" stop-color="#fbc02d" />
+              <stop offset="100%" stop-color="#f57f17" />
+            </linearGradient>
+          </defs>
+
+          <!-- Ponta Esquerda Dourada -->
+          <rect x="2" y="7" width="10" height="10" rx="3" fill="url(#ouro-pontas)" stroke="#ffe082" stroke-width="1"/>
+          <rect x="12" y="4" width="7" height="16" rx="2" fill="url(#ouro-pontas)"/>
+          
+          <!-- Corpo Vermelho do Bastão -->
+          <rect x="19" y="7" width="162" height="10" rx="2" fill="url(#corpo-bastao-red)" stroke="#b71c1c" stroke-width="0.5"/>
+          <line x1="22" y1="9" x2="178" y2="9" stroke="#ff8a80" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+          
+          <!-- Ponta Direita Dourada -->
+          <rect x="181" y="4" width="7" height="16" rx="2" fill="url(#ouro-pontas)"/>
+          <rect x="188" y="7" width="10" height="10" rx="3" fill="url(#ouro-pontas)" stroke="#ffe082" stroke-width="1"/>
+        </svg>
+      </div>
+
+      <!-- Shenlong (Dragão Verde DBZ) -->
+      <div class="shenlong-container">
+        <div class="aura-verde"></div>
+        <svg viewBox="0 0 240 200" class="shenlong-svg">
+          <defs>
+            <linearGradient id="pele-shenlong" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#4caf50" />
+              <stop offset="50%" stop-color="#2e7d32" />
+              <stop offset="100%" stop-color="#1b5e20" />
+            </linearGradient>
+            <linearGradient id="barriga-shenlong" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fff59d" />
+              <stop offset="100%" stop-color="#c0ca33" />
+            </linearGradient>
+            <filter id="brilho-olho">
+              <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+              <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+              </feMerge>
+            </filter>
+          </defs>
+
+          <path d="M 20 150 C 40 190, 90 190, 120 150 C 150 110, 200 110, 220 150 C 235 180, 190 200, 160 175" fill="none" stroke="url(#pele-shenlong)" stroke-width="18" stroke-linecap="round"/>
+          <path d="M 25 152 C 43 186, 87 186, 115 152 C 143 118, 195 118, 215 152" fill="none" stroke="url(#barriga-shenlong)" stroke-width="6" stroke-linecap="round"/>
+
+          <path d="M 85 75 Q 120 25, 155 75 Q 120 105, 85 75 Z" fill="url(#pele-shenlong)" stroke="#81c784" stroke-width="2"/>
+          <path d="M 95 78 Q 120 100, 145 78" fill="none" stroke="url(#barriga-shenlong)" stroke-width="4"/>
+
+          <path d="M 100 45 L 80 10 Q 75 5, 85 15 L 102 40 Z" fill="#8d6e63" stroke="#5d4037" stroke-width="1.5"/>
+          <path d="M 140 45 L 160 10 Q 165 5, 155 15 L 138 40 Z" fill="#8d6e63" stroke="#5d4037" stroke-width="1.5"/>
+
+          <ellipse cx="106" cy="58" rx="5" ry="4" fill="#ff1744" filter="url(#brilho-olho)" class="olho-shenlong"/>
+          <ellipse cx="134" cy="58" rx="5" ry="4" fill="#ff1744" filter="url(#brilho-olho)" class="olho-shenlong"/>
+          <circle cx="106" cy="58" r="1.5" fill="#ffffff"/>
+          <circle cx="134" cy="58" r="1.5" fill="#ffffff"/>
+
+          <path d="M 92 75 Q 40 80, 15 120" fill="none" stroke="#fff9c4" stroke-width="3" stroke-linecap="round"/>
+          <path d="M 148 75 Q 200 80, 225 120" fill="none" stroke="#fff9c4" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+
+      <!-- Anel com as 7 Esferas do Dragão -->
+      <div class="dragon-balls-orbit">
+        <div class="esfera e1">★</div>
+        <div class="esfera e2">★★</div>
+        <div class="esfera e3">★★★</div>
+        <div class="esfera e4">★★★★</div>
+        <div class="esfera e5">★<br>★</div>
+        <div class="esfera e6">★★★<br>★★★</div>
+        <div class="esfera e7">★★★★<br>★★★</div>
+      </div>
+
       <h3>Acesso ao Boletim</h3>
       <p class="login-info">Estudante: <strong>Turma 8B - Nº 17</strong></p>
       <form id="form-login" onsubmit="return false;">
@@ -69,6 +153,31 @@
         </div>
       </section>
 
+      <!-- Área dos Gráficos -->
+      <section class="area-graficos">
+        <article class="grafico-card">
+          <h2>Média por disciplina</h2>
+          <div class="grafico-container">
+            <canvas id="graficoMediasDisciplinas"></canvas>
+          </div>
+        </article>
+
+        <article class="grafico-card">
+          <h2>Evolução da média geral</h2>
+          <div class="grafico-container">
+            <canvas id="graficoEvolucaoTrimestres"></canvas>
+          </div>
+        </article>
+
+        <article class="grafico-card">
+          <h2>Faltas por trimestre</h2>
+          <div id="estadoFaltas"></div>
+          <div class="grafico-container">
+            <canvas id="graficoFaltasTrimestres"></canvas>
+          </div>
+        </article>
+      </section>
+
       <!-- Tabela do Boletim -->
       <section class="table-container">
         <table>
@@ -90,57 +199,8 @@
     </section>
   </main>
 
+  <!-- Biblioteca Chart.js necessária para carregar os gráficos -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
-<!-- Área de Login por PIN -->
-    <section id="login-container" class="card login-card">
-      <!-- Anel com as 7 Esferas do Dragão -->
-      <div class="dragon-balls-orbit">
-        <div class="esfera e1">★</div>
-        <div class="esfera e2">★★</div>
-        <div class="esfera e3">★★★</div>
-        <div class="esfera e4">★★★★</div>
-        <div class="esfera e5">★<br>★</div>
-        <div class="esfera e6">★★★<br>★★★</div>
-        <div class="esfera e7">★★★★<br>★★★</div>
-      </div>
-
-      <h3>Acesso ao Boletim</h3>
-      <p class="login-info">Estudante: <strong>Turma 8B - Nº 17</strong></p>
-
-      <!-- Área de Login por PIN -->
-    <section id="login-container" class="card login-card">
-
-      <!-- Bastão Mágico do Goku Criança (Nyoibo) -->
-      <div class="bastao-container">
-        <svg viewBox="0 0 200 24" class="bastao-svg">
-          <defs>
-            <linearGradient id="corpo-bastao-red" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#ff5252" />
-              <stop offset="40%" stop-color="#d50000" />
-              <stop offset="100%" stop-color="#7a0000" />
-            </linearGradient>
-            <linearGradient id="ouro-pontas" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#fff176" />
-              <stop offset="50%" stop-color="#fbc02d" />
-              <stop offset="100%" stop-color="#f57f17" />
-            </linearGradient>
-          </defs>
-
-          <!-- Ponta Esquerda Dourada -->
-          <rect x="2" y="7" width="10" height="10" rx="3" fill="url(#ouro-pontas)" stroke="#ffe082" stroke-width="1"/>
-          <rect x="12" y="4" width="7" height="16" rx="2" fill="url(#ouro-pontas)"/>
-          
-          <!-- Corpo Vermelho do Bastão -->
-          <rect x="19" y="7" width="162" height="10" rx="2" fill="url(#corpo-bastao-red)" stroke="#b71c1c" stroke-width="0.5"/>
-          <line x1="22" y1="9" x2="178" y2="9" stroke="#ff8a80" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
-          
-          <!-- Ponta Direita Dourada -->
-          <rect x="181" y="4" width="7" height="16" rx="2" fill="url(#ouro-pontas)"/>
-          <rect x="188" y="7" width="10" height="10" rx="3" fill="url(#ouro-pontas)" stroke="#ffe082" stroke-width="1"/>
-        </svg>
-      </div>
-
-      <!-- Shenlong (Dragão Verde DBZ) -->
-      <div class="shenlong-container">

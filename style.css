@@ -284,27 +284,6 @@ tr:hover {
   font-style: italic;
 }
 
-/* Ajuste simples para telas pequenas (celular) */
-@media (max-width: 600px) {
-  body {
-    padding: 10px;
-  }
-  
-  th, td {
-    padding: 8px 10px;
-    font-size: 0.85rem;
-  }
-
-  .painel-acoes {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .painel-acoes .btn-primary, .painel-acoes .btn-secondary, .painel-acoes .btn-danger {
-    width: 100%;
-  }
-}
-
 /* Efeito das 7 Esferas do Dragão Girando */
 .dragon-balls-orbit {
   position: relative;
@@ -377,5 +356,152 @@ tr:hover {
   100% {
     transform: rotate(-32deg) translateY(-6px);
     filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.9));
+  }
+}
+
+/* Container e Animação do Shenlong Detalhado */
+.shenlong-container {
+  position: relative;
+  width: 220px;
+  height: 160px;
+  margin: -10px auto -15px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.aura-verde {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(76, 175, 80, 0.45) 0%, rgba(0, 0, 0, 0) 70%);
+  border-radius: 50%;
+  z-index: 0;
+  animation: pulsando-aura 2.5s ease-in-out infinite alternate;
+}
+
+.shenlong-svg {
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  filter: drop-shadow(0 4px 12px rgba(0, 255, 100, 0.35));
+  animation: flutuar-shenlong 3.5s ease-in-out infinite alternate;
+}
+
+.olho-shenlong {
+  animation: brilho-olhos 1.2s infinite alternate;
+}
+
+@keyframes pulsando-aura {
+  0% { transform: scale(0.85); opacity: 0.4; }
+  100% { transform: scale(1.25); opacity: 0.9; }
+}
+
+@keyframes flutuar-shenlong {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-7px) rotate(-1deg); }
+  100% { transform: translateY(-12px) rotate(1deg); }
+}
+
+@keyframes brilho-olhos {
+  0% { fill: #d50000; }
+  100% { fill: #ff1744; filter: drop-shadow(0 0 6px #ff1744); }
+}
+
+/* Área dos Gráficos (CSS Grid Responsivo) */
+.area-graficos {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+  margin-bottom: 35px;
+}
+
+.grafico-card {
+  position: relative;
+  background-color: #16161c;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #2a2a33;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grafico-card h2 {
+  font-size: 1.1rem;
+  color: #e50914;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.grafico-container {
+  position: relative;
+  width: 100%;
+  height: 380px;
+  flex: 1;
+}
+
+/* Badge de Perigo para o Card de Faltas */
+.badge-perigo {
+  display: inline-block;
+  background-color: #e50914;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: piscar-perigo 1s infinite alternate;
+}
+
+.card-critico {
+  border-color: #e50914 !important;
+  box-shadow: 0 0 15px rgba(229, 9, 20, 0.5) !important;
+}
+
+@keyframes piscar-perigo {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; transform: scale(1.05); }
+}
+
+/* Responsividade dos Gráficos (Desktop 3 colunas -> Tablet 2 colunas -> Celular 1 coluna) */
+@media (max-width: 1024px) {
+  .area-graficos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .area-graficos {
+    grid-template-columns: 1fr;
+  }
+  
+  .grafico-container {
+    height: 300px;
+  }
+}
+
+/* Ajuste simples para telas pequenas (celular) */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+  
+  th, td {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
+
+  .painel-acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .painel-acoes .btn-primary, .painel-acoes .btn-secondary, .painel-acoes .btn-danger {
+    width: 100%;
   }
 }

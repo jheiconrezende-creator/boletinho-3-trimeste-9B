@@ -27,6 +27,11 @@ let pinSessao = "";
 let dadosAtuais = [];
 let modoEdicao = false;
 
+// Instâncias globais para controlar e recriar os gráficos sem sobreposição
+let graficoMedias = null;
+let graficoEvolucao = null;
+let graficoFaltas = null;
+
 // Função para normalizar dados antigos/locais
 function normalizarNota(valor) {
   if (valor === null || valor === undefined || valor === "") {
@@ -293,138 +298,12 @@ function atualizarBotoesAcao() {
   }
 }
 
-// Processa médias e atualiza a interface
+// Processa médias e atualiza a interface (Tabela + Cards + Gráficos)
 function processarEExibirBoletim() {
   renderizarTabela();
+  atualizarGraficos();
 }
 
 function renderizarTabela() {
   const tabelaBody = document.getElementById("tabela-boletim");
   if (!tabelaBody) return;
-  tabelaBody.innerHTML = "";
-
-  let somaMediasGerais = 0;
-  let qtdDisciplinasComMedia = 0;
-  let totalFaltasGeral = 0;
-  let bomDesempenhoCount = 0;
-  let atencaoCount = 0;
-
-  dadosAtuais.forEach((item, index) => {
-    const n1 = normalizarNota(item.tri1);
-    const n2 = normalizarNota(item.tri2);
-    const n3 = normalizarNota(item.tri3);
-
-    const arrFaltas = Array.isArray(item.faltas) ? item.faltas : [0, 0, 0];
-    const f1 = typeof arrFaltas[0] === "number" ? arrFaltas[0] : 0;
-    const f2 = typeof arrFaltas[1] === "number" ? arrFaltas[1] : 0;
-    const f3 = typeof arrFaltas[2] === "number" ? arrFaltas[2] : 0;
-    const totalFaltasDisc = f1 + f2 + f3;
-    totalFaltasGeral += totalFaltasDisc;
-
-    const notasValidas = [n1, n2, n3].filter(n => n !== null);
-    let mediaDisc = null;
-    let situacao = "Nota ainda não disponível";
-    let classeStatus = "status-indisponivel";
-
-    if (notasValidas.length > 0) {
-      const somaNotas = notasValidas.reduce((acc, n) => acc + n, 0);
-      mediaDisc = somaNotas / notasValidas.length;
-
-      if (mediaDisc >= 6.0) {
-        situacao = "Bom desempenho";
-        classeStatus = "status-bom";
-        bomDesempenhoCount++;
-      } else {
-        situacao = "Atenção";
-        classeStatus = "status-atencao";
-        atencaoCount++;
-      }
-
-      somaMediasGerais += mediaDisc;
-      qtdDisciplinasComMedia++;
-    }
-
-    const tr = document.createElement("tr");
-
-    if (modoEdicao) {
-      const tdNome = document.createElement("td");
-      tdNome.textContent = item.disciplina;
-
-      const tdTri1 = document.createElement("td");
-      tdTri1.innerHTML = `<input type="text" id="edit-tri1-${index}" value="${valorParaInputNota(item.tri1)}" placeholder="0-10">`;
-
-      const tdTri2 = document.createElement("td");
-      tdTri2.innerHTML = `<input type="text" id="edit-tri2-${index}" value="${valorParaInputNota(item.tri2)}" placeholder="0-10">`;
-
-      const tdTri3 = document.createElement("td");
-      tdTri3.innerHTML = `<input type="text" id="edit-tri3-${index}" value="${valorParaInputNota(item.tri3)}" placeholder="0-10">`;
-
-      const tdMedia = document.createElement("td");
-      tdMedia.textContent = formatarExibicaoNota(mediaDisc);
-
-      const tdFaltas = document.createElement("td");
-      tdFaltas.innerHTML = `
-        <div style="display:flex; gap:4px; justify-content:center;">
-          <input type="text" id="edit-f1-${index}" value="${f1}" style="width:35px;" title="1º Tri">
-          <input type="text" id="edit-f2-${index}" value="${f2}" style="width:35px;" title="2º Tri">
-          <input type="text" id="edit-f3-${index}" value="${f3}" style="width:35px;" title="3º Tri">
-        </div>
-      `;
-
-      const tdSit = document.createElement("td");
-      tdSit.className = classeStatus;
-      tdSit.textContent = situacao;
-
-      tr.appendChild(tdNome);
-      tr.appendChild(tdTri1);
-      tr.appendChild(tdTri2);
-      tr.appendChild(tdTri3);
-      tr.appendChild(tdMedia);
-      tr.appendChild(tdFaltas);
-      tr.appendChild(tdSit);
-    } else {
-      const tdNome = document.createElement("td");
-      tdNome.textContent = item.disciplina;
-
-      tr.appendChild(tdNome);
-      tr.innerHTML += `
-        <td>${formatarExibicaoNota(n1)}</td>
-        <td>${formatarExibicaoNota(n2)}</td>
-        <td>${formatarExibicaoNota(n3)}</td>
-        <td>${formatarExibicaoNota(mediaDisc)}</td>
-        <td>${totalFaltasDisc}</td>
-        <td class="${classeStatus}">${situacao}</td>
-      `;
-    }
-
-    tabelaBody.appendChild(tr);
-  });
-
-  const mediaGeralGlobal = qtdDisciplinasComMedia > 0 
-    ? (somaMediasGerais / qtdDisciplinasComMedia).toFixed(1).replace('.', ',') 
-    : "—";
-
-  const cardMedia = document.getElementById("card-media");
-  const cardFaltas = document.getElementById("card-faltas");
-  const cardBom = document.getElementById("card-bom-desempenho");
-  const cardAtencao = document.getElementById("card-atencao");
-
-  if (cardMedia) cardMedia.textContent = mediaGeralGlobal;
-  if (cardFaltas) cardFaltas.textContent = totalFaltasGeral;
-  if (cardBom) cardBom.textContent = bomDesempenhoCount;
-  if (cardAtencao) cardAtencao.textContent = atencaoCount;
-}
-
-function exibirMensagemLogin(texto, tipo) {
-  const loginMsg = document.getElementById("login-mensagem");
-  if (!loginMsg) return;
-  loginMsg.textContent = texto;
-  loginMsg.className = `mensagem-status ${tipo}`;
-}
-
-function exibirMensagemBoletim(texto, tipo) {
-  const boletimMsg = document.getElementById("boletim-mensagem");
-  if (!boletimMsg) return;
-  boletimMsg.textContent = texto;
-  boletimMsg.className = `mensagem-status ${tipo}`;
-}
