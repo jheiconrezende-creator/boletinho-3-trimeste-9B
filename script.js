@@ -307,3 +307,9 @@ function processarEExibirBoletim() {
 function renderizarTabela() {
   const tabelaBody = document.getElementById("tabela-boletim");
   if (!tabelaBody) return;
+
+  const CONFIG_ALUNO = {
+  turma: "9B",
+  numeroChamada: 17,
+  apiUrl: "https://boletim-api.profbt.com.br"
+};
